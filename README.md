@@ -12,7 +12,7 @@ After a line from the data file is tweeted, it is removed from the file. This me
 
 ## Python prerequisites
 
-Line Tweetbot is written in Python. It uses the PTT ([Python Twitter Tools])(http://mike.verdone.ca/twitter/) library, so you will need to make sure it is installed. Instructions are provided on the PTT website.
+Line Tweetbot is written in Python. It uses the [Python Twitter Tools](http://mike.verdone.ca/twitter/) library, so you will need to make sure it is installed. Instructions are provided on the PTT website.
 
 ## Perl requirements
 
