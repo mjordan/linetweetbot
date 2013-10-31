@@ -1,0 +1,4 @@
+First line of data to tweet.
+Second line of data to tweet.
+You get the picture.
+This line is over 140 characters, Twitter's limit. It will be broken into several tweets of 140 characters each, with '[...]' added to the end of all but the last tweet in a group.
