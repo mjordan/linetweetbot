@@ -1,4 +1,4 @@
-# Overview
+# Overvie
 
 Line Tweetbot reads data from a file, one line at a time, and tweets the data. If the line is longer than Twitter's limit of 140 characters, it splits the line up into smaller chunks and tweets all chunks in succession. It adds elipses ([...]) to the end of incomplete tweets but doesn't attempt to split long lines on word boundaries.
 
@@ -7,7 +7,7 @@ After a line from the data file is tweeted, it is removed from the file. This me
 ## General prerequisites
 
 * A Twitter acccount for Line Tweetbot to tweet to.
-* A data file.
+* A data file. Each line in the file will become a tweet (or set of tweets), starting with the first line and working downward.
 * Python (and in some cases Perl).
 
 ## Python prerequisites
