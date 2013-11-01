@@ -3,7 +3,7 @@
 # Utility script to split a text file into one sentence per line.
 # Usage: ./sentences2lines.pl > output.txt
 
-my $file_to_split = 'data.txt';
+my $file_to_split = 'sentences_but_not_one_per_line.txt';
 
 use File::Slurp;
 use Lingua::Sentence;
@@ -16,7 +16,7 @@ $text =~ s/\r|\n/ /g;
 my @sentences = $splitter->split_array($text);
 
 foreach my $sentence (@sentences) {
-  $len = length($sentence);
+  my $len = length($sentence);
   # Print to stdout.
   print $sentence . "\n";
 }
