@@ -44,7 +44,7 @@ def get_chunks(line):
     # Iterate through the line and break it up into chunks. We use 134 
     # as the value of chunk_size because we we want to append ' [...]' 
     # to the end of chunks.
-    chunks = [line[x:x + chunk_length] for x in range(0, len(line), chunk_length)]
+    chunks = [line[x:x + chunk_length] for x in range(0, line_length, chunk_length)]
     # However, we never want to append ' [...]' to the end of the last chunk
     # so we remove it before looping through the preceding ones.
     last_chunk = chunks[-1]
