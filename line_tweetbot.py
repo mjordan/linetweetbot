@@ -17,21 +17,25 @@ consumer_secret = 'sampleooojwydcw53ip'
 # in the same directory as this script, use a full path.
 data_file_name = 'data.txt'
 
+# String tacked onto the end of tweets to indicate that the 
+# sentence is comprised of multiple tweets.
+tweet_separator = ' [...]' 
+
 """
 Functions
 """
 
 def get_chunks(line):
     """
-    Breaks lines up into chunks of 134 characters each.
-    We use that number so we can include ' [...]' in tweets
-    that contain partial sentences.
+    Breaks lines up into chunks of a maximum of 140 characters long.
+    However, we need to subtract the length of tweet_separator so we 
+    can include it in tweets that contain partial sentences.
 
     Note that this function limits line length on character
     count, not word count, so we will get words split over
     multiple tweets. Looks bad but I am lazy.
     """
-    chunk_length = 134;
+    chunk_length = 140 - len(tweet_separator)
     line_length = len(line)
 
     # If the line fits in one tweet, return it here.
@@ -41,15 +45,13 @@ def get_chunks(line):
     # In the script's main logic, we loop through this list and tweet
     # each entry.
     tweetable_chunks = []
-    # Iterate through the line and break it up into chunks. We use 134 
-    # as the value of chunk_size because we we want to append ' [...]' 
-    # to the end of chunks.
+    # Iterate through the line and break it up into chunks. 
     chunks = [line[x:x + chunk_length] for x in range(0, line_length, chunk_length)]
-    # However, we never want to append ' [...]' to the end of the last chunk
-    # so we remove it before looping through the preceding ones.
+    # However, we never want to append tweet_separator to the end of the last chunk
+    # so we remove that chunk before looping through the preceding ones.
     last_chunk = chunks[-1]
     for chunk in chunks[:-1]:
-        chunk = chunk + ' [...]'
+        chunk = chunk + tweet_separator
         tweetable_chunks.append(chunk)
     # Add the last chunk to the list.
     tweetable_chunks.append(last_chunk)
