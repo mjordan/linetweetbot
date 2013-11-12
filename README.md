@@ -1,6 +1,6 @@
 # Overview
 
-Line Tweetbot reads data from a file, one line at a time, and tweets the data. If the line is longer than Twitter's limit of 140 characters, it splits the line up into smaller chunks and tweets all chunks in succession. It adds elipses ([...]) to the end of incomplete tweets but doesn't attempt to split long lines on word boundaries.
+Line Tweetbot reads data from a file, one line at a time, and tweets the data. If the line is longer than Twitter's limit of 140 characters, it splits the line up into smaller chunks and tweets all chunks in succession. It adds elipses ([...]) (this is a configurable option) to the end of incomplete tweets but doesn't attempt to split long lines on word boundaries.
 
 A twitter account that uses Line Tweetbot is [Transient Creatures](https://twitter.com/WotWSentences), which tweets the entirety of H.G. Wells' _War of the Worlds_ one sentence at a time, in reading order.
 
