@@ -16,7 +16,6 @@ $text =~ s/\r|\n/ /g;
 my @sentences = $splitter->split_array($text);
 
 foreach my $sentence (@sentences) {
-  my $len = length($sentence);
   # Print to stdout.
   print $sentence . "\n";
 }
