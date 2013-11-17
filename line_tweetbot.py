@@ -18,7 +18,8 @@ consumer_secret = 'sampleooojwydcw53ip'
 data_file_name = 'data.txt'
 
 # String tacked onto the end of tweets to indicate that the 
-# sentence is comprised of multiple tweets.
+# sentence is comprised of multiple tweets. Be sure to include
+# the leading space.
 tweet_separator = ' [...]' 
 
 """
@@ -30,10 +31,6 @@ def get_chunks(line):
     Breaks lines up into chunks of a maximum of 140 characters long.
     However, we need to subtract the length of tweet_separator so we 
     can include it in tweets that contain partial sentences.
-
-    Note that this function limits line length on character
-    count, not word count, so we will get words split over
-    multiple tweets. Looks bad but I am lazy.
     """
     chunk_length = 140 - len(tweet_separator)
     line_length = len(line)
@@ -45,16 +42,29 @@ def get_chunks(line):
     # In the script's main logic, we loop through this list and tweet
     # each entry.
     tweetable_chunks = []
-    # Iterate through the line and break it up into chunks. 
-    chunks = [line[x:x + chunk_length] for x in range(0, line_length, chunk_length)]
-    # However, we never want to append tweet_separator to the end of the last chunk
-    # so we remove that chunk before looping through the preceding ones.
-    last_chunk = chunks[-1]
-    for chunk in chunks[:-1]:
-        chunk = chunk + tweet_separator
-        tweetable_chunks.append(chunk)
-    # Add the last chunk to the list.
-    tweetable_chunks.append(last_chunk)
+
+    # Break up the current line into tweets, ensuring that each tweet
+    # breaks on a space, not within a word.
+    line_remainder = line
+    while len(line_remainder) > chunk_length:
+        # Get the first chunk_length characters in the line.
+        raw_slice = line[:chunk_length]
+        # Find the position of the last space in the chunk.
+        last_space = raw_slice.rfind(' ')
+        # Remove whatever in the line comes after the last space in
+        # the chunk.
+        trimmed_slice = line[:last_space]
+        # Add the remaining chunk, plus tweet_separator, to the list of tweets.
+        tweet = trimmed_slice.strip() + tweet_separator
+        tweetable_chunks.append(tweet)
+        # Get the string that follows the last space and reinitialize
+        # line with it.
+        line_remainder = line[last_space:]
+        line = line_remainder
+   
+    # When line_remainder is less than chunk_length, add it to 
+    # the list of tweets.
+    tweetable_chunks.append(line_remainder.strip())
 
     return tweetable_chunks
 
