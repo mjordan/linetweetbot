@@ -53,6 +53,6 @@ Public domain. See LICENSE file for details.
 Improvements and bug fixes are welcome.
 
 1. [Fork the repository](https://help.github.com/articles/fork-a-repo)
-2. Fix a bug, add an improvement (maybe something like splitting long lines on word boundaries....). 
+2. Fix a bug, add an improvement. 
 3. [Submit a pull request](https://help.github.com/articles/creating-a-pull-request) explaining what your code does.
 
